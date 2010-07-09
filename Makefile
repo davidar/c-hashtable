@@ -1,14 +1,16 @@
+all: tester old_tester libhashtable.a
+
+libhashtable.a: hashtable.o hashtable_itr.o
+	ar rcs $@ $^
 
 tester: hashtable.o tester.o hashtable_itr.o
 	gcc -g -Wall -O -lm -o tester hashtable.o hashtable_itr.o tester.o
-
-all: tester old_tester
 
 tester.o:	tester.c
 	gcc -g -Wall -O -c tester.c -o tester.o
 
 old_tester: hashtable_powers.o tester.o hashtable_itr.o
-	gcc -g -Wall -O -o old_tester hashtable_powers.o hashtable_itr.o tester.o
+	gcc -g -Wall -O -lm -o old_tester hashtable_powers.o hashtable_itr.o tester.o
 
 hashtable_powers.o:	hashtable_powers.c
 	gcc -g -Wall -O -c hashtable_powers.c -o hashtable_powers.o
@@ -23,4 +25,4 @@ tidy:
 	rm *.o
 
 clean: tidy
-	rm -f tester old_tester
+	rm -f tester old_tester libhashtable.a

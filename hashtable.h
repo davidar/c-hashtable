@@ -99,9 +99,9 @@ int
 hashtable_insert(struct hashtable *h, void *k, void *v);
 
 #define DEFINE_HASHTABLE_INSERT(fnname, keytype, valuetype) \
-int fnname (struct hashtable *h, keytype *k, valuetype *v) \
+static inline int fnname (struct hashtable *h, keytype *k, valuetype *v) \
 { \
-    return hashtable_insert(h,k,v); \
+    return hashtable_insert(h, (void *) k, (void *) v); \
 }
 
 /*****************************************************************************
@@ -117,9 +117,9 @@ void *
 hashtable_search(struct hashtable *h, void *k);
 
 #define DEFINE_HASHTABLE_SEARCH(fnname, keytype, valuetype) \
-valuetype * fnname (struct hashtable *h, keytype *k) \
+static inline valuetype * fnname (struct hashtable *h, keytype *k) \
 { \
-    return (valuetype *) (hashtable_search(h,k)); \
+    return (valuetype *) (hashtable_search((void *) h, (void *) k)); \
 }
 
 /*****************************************************************************
@@ -135,9 +135,9 @@ void * /* returns value */
 hashtable_remove(struct hashtable *h, void *k);
 
 #define DEFINE_HASHTABLE_REMOVE(fnname, keytype, valuetype) \
-valuetype * fnname (struct hashtable *h, keytype *k) \
+static inline valuetype * fnname (struct hashtable *h, keytype *k) \
 { \
-    return (valuetype *) (hashtable_remove(h,k)); \
+    return (valuetype *) (hashtable_remove((void *) h, (void *) k)); \
 }
 
 
