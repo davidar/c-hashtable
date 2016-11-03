@@ -7,7 +7,7 @@
 #include <string.h>
 #include <math.h>
 
-const float max_load_factor = 0.65;
+const float max_load_factor = 0.65f;
 
 /*****************************************************************************/
 struct hashtable *
