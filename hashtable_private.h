@@ -43,8 +43,9 @@ indexFor(unsigned int tablelength, unsigned int hashvalue)
 */
 
 /*****************************************************************************/
-#define freekey(X) free(X)
-/*define freekey(X) ; */
+#if !defined(freekey)
+#define freekey(X) ;
+#endif
 
 
 /*****************************************************************************/
