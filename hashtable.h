@@ -119,7 +119,7 @@ hashtable_search(struct hashtable *h, void *k);
 #define DEFINE_HASHTABLE_SEARCH(fnname, keytype, valuetype) \
 static inline valuetype * fnname (struct hashtable *h, keytype *k) \
 { \
-    return (valuetype *) (hashtable_search((void *) h, (void *) k)); \
+    return (valuetype *) (hashtable_search(h, (void *) k)); \
 }
 
 /*****************************************************************************
@@ -137,7 +137,7 @@ hashtable_remove(struct hashtable *h, void *k);
 #define DEFINE_HASHTABLE_REMOVE(fnname, keytype, valuetype) \
 static inline valuetype * fnname (struct hashtable *h, keytype *k) \
 { \
-    return (valuetype *) (hashtable_remove((void *) h, (void *) k)); \
+    return (valuetype *) (hashtable_remove(h, (void *) k)); \
 }
 
 
